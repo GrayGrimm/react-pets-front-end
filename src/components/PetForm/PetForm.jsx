@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const PetForm = (props) => {
+const PetForm = ({ handleAddPet }) => {
     const [formData, setFormData] = useState({
         name: '',
         age: '',
@@ -10,9 +10,14 @@ const PetForm = (props) => {
 const handleChange = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
 }
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddPet(formData)
+}
 return (
     <div>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name"> Name </label>
             <input
                 id="name"

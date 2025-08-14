@@ -9,9 +9,14 @@ import PetForm from './components/PetForm/PetForm.jsx'
 const App = () => {
   const [pets, setPets] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleSelect = (pet) => {
     setSelected(pet);
+  };
+
+  const handleFormView = () => {
+    setIsFormOpen(!isFormOpen);
   };
 
   useEffect(() => {
@@ -31,11 +36,28 @@ const App = () => {
     fetchPets();
   }, []);
 
+  const handleAddPet = async (formData) => {
+    try {
+      console.log(formData)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      <PetList pets={pets} handleSelect={handleSelect} />
-      <PetForm />
-      <PetDetail selected={selected} />
+      <PetList
+        pets={pets}
+        handleSelect={handleSelect}
+        handleFormView={handleFormView}
+        isFormOpen={isFormOpen}
+      />
+      {isFormOpen ? (
+        <PetForm handleAddPet={handleAddPet}/>
+      ) : (
+        <PetDetail selected={selected} />
+      )
+      }
     </>
   );
 };
