@@ -1,5 +1,5 @@
 
-const PetDetail = ({ selected, handleFormView }) => {
+const PetDetail = ({ selected, handleFormView, handleDeletePet }) => {
     // return if props.selected is null
     if (!selected) {
         return (
@@ -20,6 +20,9 @@ const PetDetail = ({ selected, handleFormView }) => {
             <div>
                 <button onClick={() => handleFormView(selected)}>
                     Edit Pet
+                </button>
+                <button onClick={() => handleDeletePet(selected._id)}>
+                    Delete Pet
                 </button>
             </div>
         </div>
