@@ -1,4 +1,4 @@
-const PetList = ({ pets }) => {
+const PetList = ({ pets, handleSelect }) => {
 
     return (
         <div>
@@ -8,8 +8,14 @@ const PetList = ({ pets }) => {
                     <h2>No Pets Yet!</h2>
                 ) : (
                     <ul>
-                        {props.pets.map((pet) => (
-                            <li key={pet._id}>{pet.name}</li>
+                        {pets.map((pet) => (
+                            <li
+                                key={pet._id}
+                                style={{ cursor: 'pointer', color: "#646CFF" }}
+                                onClick={() => handleSelect(pet)}
+                            >
+                                {pet.name}
+                            </li>
                         ))}
                     </ul>
                 )}
